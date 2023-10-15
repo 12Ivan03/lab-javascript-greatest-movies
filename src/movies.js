@@ -334,10 +334,47 @@ function orderAlphabetically(moviesArray) {
     }
 }
 
-console.log(orderAlphabetically(moviesToTest))
+//console.log(orderAlphabetically(moviesToTest))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const durationOnly = [...moviesArray].map((titleExtract) => titleExtract.duration);
+
+// extract strNumber to numbers
+  
+  const numbersStr = durationOnly.map((extractNumbers) => {
+    return extractNumbers.match(/\d+/g);
+    });
+
+// convert hours to min...
+
+  const convStrToNumbMin = numbersStr.map((makeNumbers) => {
+    let calHours = parseInt(makeNumbers[0]);
+    let calMin = parseInt(makeNumbers[1]);
+    return calHours * 60 + calMin;
+  });
+  
+//make numbers back to strNumbers...
+
+  const convToStr = convStrToNumbMin.map(makeStr => {
+    return makeStr.toString();
+  })
+  
+  // to concatenate the new integer with duration
+  
+  const chageDuration = moviesArray.map((element, index) => {
+   // element.duration = prints the duraion of the movies;
+   // convToStr[index] = prints the new duration 
+   // need to concatenate them 
+    element.duration = convToStr[index] + " min";
+    return element;
+    });
+
+  return  chageDuration;
+}
+
+console.log(turnHoursToMinutes(moviesToTest))
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
