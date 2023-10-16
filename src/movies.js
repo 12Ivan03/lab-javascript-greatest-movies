@@ -1,4 +1,4 @@
-/*
+
 const moviesToTest = [
     {
       title: 'The Shawshank Redemption',
@@ -226,7 +226,6 @@ const moviesToTest = [
     },
 ]
 
-*/
 
 
 // Iteration 1: All directors? - Get the array of all directors.
@@ -278,20 +277,19 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
+  if (moviesArray.length === 0) {
+        return 0;
+};
 
-        const dramaMovies = moviesArray.filter(allDramaMovies => {     
-    return allDramaMovies.genre.includes('Drama');
+  const dramaMovies = [...moviesArray].filter(allDramaMovies => {     
+        return allDramaMovies.genre.includes('Drama');
 });
 
-    if (dramaMovies.length === 0) {
-        return 0;
-    };
-
-const avrScoreOfDramaMovies = dramaMovies.reduce(function (acc, value) {
+  const ScoreOfDramaMovies = dramaMovies.reduce(function (acc, value) {
         return acc + value.score
 },0 );
 
-let avrScore = (avrScoreOfDramaMovies / dramaMovies.length).toFixed(2);
+    let avrScore = (ScoreOfDramaMovies / dramaMovies.length).toFixed(2);
 
 return Number(avrScore);
 
@@ -316,29 +314,28 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    
- const titlesOnly = [...moviesArray].map(titleExtract => titleExtract.title);
 
-
-  if (titlesOnly.length > 20 ) {
+  if (moviesArray.length===0) {
+    return 0;
+  }
     
-    const alphabiticalOrder = titlesOnly.sort((a,b) => {
+  const alphabiticalOrder = [...moviesArray].sort((a,b) => {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
         if (a.title === b.title) return 0;
-      });
-    
-    return alphabiticalOrder.slice(0,20)
-    } 
-    else if (moviesArray.length===0) {
-      return 0;
-    }
+    }); 
+
+  const titlesOnly = alphabiticalOrder.map(titleExtract => titleExtract.title);
+  
+  return titlesOnly.slice(0,20)
+  
 }
 
 //console.log(orderAlphabetically(moviesToTest))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
+
     const durationOnly = [...moviesArray].map((titleExtract) => titleExtract.duration);
 
 // extract strNumber to numbers
@@ -357,17 +354,17 @@ function turnHoursToMinutes(moviesArray) {
   
 //make numbers back to strNumbers...
 
-  const convToStr = convStrToNumbMin.map(makeStr => {
-    return makeStr.toString();
-  })
+  // const convToStr = convStrToNumbMin.map(makeStr => {
+  //   return makeStr.toString();
+  // })
   
   // to concatenate the new integer with duration
   
-  const chageDuration = moviesArray.map((element, index) => {
+  const chageDuration = [...moviesArray].map((element, index) => {
    // element.duration = prints the duraion of the movies;
    // convToStr[index] = prints the new duration 
    // need to concatenate them 
-    element.duration = convToStr[index] + " min";
+    element.duration = convStrToNumbMin[index];
     return element;
     });
 
@@ -392,10 +389,10 @@ function bestYearAvg(moviesArray) {
     //         sameYear.year === sameYear.year;??
     //     });
 
-  return selectSameYearMov
+  //return selectSameYearMov
 }
 
-console.log(bestYearAvg(moviesToTest))
+//console.log(bestYearAvg(moviesToTest))
 
 
 /*
