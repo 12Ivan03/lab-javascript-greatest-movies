@@ -1,3 +1,4 @@
+/*
 const moviesToTest = [
     {
       title: 'The Shawshank Redemption',
@@ -225,6 +226,8 @@ const moviesToTest = [
     },
 ]
 
+*/
+
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -320,9 +323,7 @@ function orderAlphabetically(moviesArray) {
   if (titlesOnly.length > 20 ) {
     
     const alphabiticalOrder = titlesOnly.sort((a,b) => {
-        if (a.title < b.title) {
-          return -1;
-        }
+        if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
         if (a.title === b.title) return 0;
       });
@@ -373,8 +374,34 @@ function turnHoursToMinutes(moviesArray) {
   return  chageDuration;
 }
 
-console.log(turnHoursToMinutes(moviesToTest))
+//console.log(turnHoursToMinutes(moviesToTest))
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+
+    //sort it out
+    const orderTheYears = moviesArray.sort((a,b) => {
+        if(a.year<b.year) return -1;
+        if(a.year>b.year) return 1;
+        if(a.year=b.year) return 0;
+    })
+
+    //pick the same years
+    // const selectSameYearMov = orderTheYears.filter( sameYear =>{
+    //         sameYear.year === sameYear.year;??
+    //     });
+
+  return selectSameYearMov
+}
+
+console.log(bestYearAvg(moviesToTest))
+
+
+/*
+-scan all years 
+-movie-years more then one 
+-scan thier scores and find the avrage... through the function already made. 
+-compare all the scores with each other / maybe sort.
+-show the year of the highest score
+*/
