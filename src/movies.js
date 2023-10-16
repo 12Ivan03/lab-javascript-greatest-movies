@@ -232,10 +232,20 @@ const moviesToTest = [
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-    const directors = moviesArray.map(getDirectors => {
-    return getDirectors.director;
+    
+  let uniqueDirectors = [];
+  let storeTheSame = [];
+
+const directors = moviesArray.map(getDirectors => {
+  
+  if(uniqueDirectors.includes(getDirectors.director)) {
+    storeTheSame.push(getDirectors.director);
+  } else {
+    uniqueDirectors.push(getDirectors.director);
+  }
+  
 } );
-return directors;
+return uniqueDirectors;
 }
 
 //console.log(`All directors:`, getAllDirectors(moviesToTest))
@@ -261,7 +271,7 @@ function scoresAverage(moviesArray) {
     }
     const avrOfAllMovies = moviesArray.reduce(function (acc, curVal) { 
        if (curVal.score !== null && curVal.score !== undefined) {
-        return acc + curVal.score 
+        return acc + curVal.score
        } else {
         return 0;
        }
@@ -271,7 +281,6 @@ function scoresAverage(moviesArray) {
     return parseFloat(avrageScore.toFixed(2));
 }
     
-
 //console.log(`All score avrage: ${scoresAverage(moviesToTest)}`);
 
 
@@ -284,6 +293,10 @@ function dramaMoviesScore(moviesArray) {
   const dramaMovies = [...moviesArray].filter(allDramaMovies => {     
         return allDramaMovies.genre.includes('Drama');
 });
+
+  if (dramaMovies.length === 0) {
+    return 0;
+  }
 
   const ScoreOfDramaMovies = dramaMovies.reduce(function (acc, value) {
         return acc + value.score
@@ -352,7 +365,7 @@ function turnHoursToMinutes(moviesArray) {
     return calHours * 60 + calMin;
   });
   
-//make numbers back to strNumbers...
+//make numbers back to strNumbers... by my oppinion looks better when its returned as a string :) 
 
   // const convToStr = convStrToNumbMin.map(makeStr => {
   //   return makeStr.toString();
@@ -376,20 +389,30 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
+    // * working progres ... * //
 
     //sort it out
-    const orderTheYears = moviesArray.sort((a,b) => {
-        if(a.year<b.year) return -1;
-        if(a.year>b.year) return 1;
-        if(a.year=b.year) return 0;
-    })
+    // const orderTheYears = moviesArray.sort((a,b) => {
+    //     if(a.year<b.year) return -1;
+    //     if(a.year>b.year) return 1;
+    //     if(a.year=b.year) return 0;
+    // })
 
-    //pick the same years
-    // const selectSameYearMov = orderTheYears.filter( sameYear =>{
-    //         sameYear.year === sameYear.year;??
-    //     });
+    // pick the same years
 
-  //return selectSameYearMov
+    let moviesInSameYear = [];
+    let singleYearMovies = [];
+
+    const sameYearMovies = moviesArray.filter(sameYears => { sameYears.year 
+
+      if (moviesInSameYear.includes(sameYears.year)) {
+        moviesInSameYear.push(sameYears.year);
+      } else {
+        singleYearMovies.push(sameYears.year);
+      }
+
+})
+  return moviesInSameYear
 }
 
 //console.log(bestYearAvg(moviesToTest))
