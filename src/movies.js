@@ -248,7 +248,7 @@ const directors = moviesArray.map(getDirectors => {
 return uniqueDirectors;
 }
 
-//console.log(`All directors:`, getAllDirectors(moviesToTest))
+//console.log(`All directors with no repetition:`, getAllDirectors(moviesToTest))
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -273,7 +273,7 @@ function scoresAverage(moviesArray) {
        if (curVal.score !== null && curVal.score !== undefined) {
         return acc + curVal.score
        } else {
-        return 0;
+        return acc;
        }
     },0 );
    
@@ -327,20 +327,16 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-
-  if (moviesArray.length===0) {
-    return 0;
-  }
-    
+  
   const alphabiticalOrder = [...moviesArray].sort((a,b) => {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
         if (a.title === b.title) return 0;
     }); 
 
-  const titlesOnly = alphabiticalOrder.map(titleExtract => titleExtract.title);
+  const titlesOnly = alphabiticalOrder.map(titleExtract => titleExtract.title)
   
-  return titlesOnly.slice(0,20)
+  return titlesOnly.slice(0,20);
   
 }
 
@@ -364,19 +360,9 @@ function turnHoursToMinutes(moviesArray) {
     let calMin = parseInt(makeNumbers[1]);
     return calHours * 60 + calMin;
   });
-  
-//make numbers back to strNumbers... by my oppinion looks better when its returned as a string :) 
 
-  // const convToStr = convStrToNumbMin.map(makeStr => {
-  //   return makeStr.toString();
-  // })
-  
-  // to concatenate the new integer with duration
-  
   const chageDuration = [...moviesArray].map((element, index) => {
-   // element.duration = prints the duraion of the movies;
-   // convToStr[index] = prints the new duration 
-   // need to concatenate them 
+
     element.duration = convStrToNumbMin[index];
     return element;
     });
@@ -390,15 +376,6 @@ function turnHoursToMinutes(moviesArray) {
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
     // * working progres ... * //
-
-    //sort it out
-    // const orderTheYears = moviesArray.sort((a,b) => {
-    //     if(a.year<b.year) return -1;
-    //     if(a.year>b.year) return 1;
-    //     if(a.year=b.year) return 0;
-    // })
-
-    // pick the same years
 
     let moviesInSameYear = [];
     let singleYearMovies = [];
@@ -416,12 +393,3 @@ function bestYearAvg(moviesArray) {
 }
 
 //console.log(bestYearAvg(moviesToTest))
-
-
-/*
--scan all years 
--movie-years more then one 
--scan thier scores and find the avrage... through the function already made. 
--compare all the scores with each other / maybe sort.
--show the year of the highest score
-*/
